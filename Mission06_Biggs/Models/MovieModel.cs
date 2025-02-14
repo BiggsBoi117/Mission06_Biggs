@@ -6,6 +6,7 @@ namespace Mission06_Biggs.Models
     {
 
         [Key]
+        [Required]
         public int movieId { get; set; }
         public string Category { get; set; }
         public string Title { get; set; }
