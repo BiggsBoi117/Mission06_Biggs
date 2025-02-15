@@ -6,6 +6,13 @@ namespace Mission06_Biggs.Controllers
 {
     public class HomeController : Controller
     {
+        private MovieDBContext _context;
+
+        public HomeController(MovieDBContext context)
+        {
+            _context = context;
+        }
+        
         public IActionResult Index()
         {
             return View();
@@ -16,9 +23,18 @@ namespace Mission06_Biggs.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult AddMovie()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddMovie(MovieModel movie)
+        {
+            _context.Movies.Add(movie);
+            _context.SaveChanges();
+            return View("Confirmation", movie);
         }
     }
 }

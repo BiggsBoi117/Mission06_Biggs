@@ -3,20 +3,20 @@
 	ViewData["Title"] = "Add Movie";
 }
 
-<form action="/" method="post">
-    <label asp-for="Title">Title:</label>
+<form method="post">
+    <label asp-for="Title" required>Title:</label>
     <input asp-for="Title" required>
     <br />
-    <label asp-for="Category">Category:</label>
+    <label asp-for="Category" required>Category:</label>
     <input asp-for="Category" required>
     <br />
-    <label asp-for="Year">Year:</label>
+    <label asp-for="Year" required>Year:</label>
     <input asp-for="Year" required>
     <br />
-    <label asp-for="Director">Director:</label>
+    <label asp-for="Director" required>Director:</label>
     <input asp-for="Director" required>
     <br />
-    <label asp-for="Rating">Rating:</label>
+    <label asp-for="Rating" required>Rating:</label>
     <select asp-for="Rating" required>
         <option value="G">G</option>
         <option value="PG">PG</option>
