@@ -49,34 +49,34 @@ namespace Mission06_Biggs.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var movie = _context.Movies
+            var movieToEdit = _context.Movies
                 .Single(x => x.movieId == id);
 
-            return View("AddMovie", movie);
+            return View("AddMovie", movieToEdit);
         }
 
         [HttpPost]
-        public IActionResult Edit(MovieModel movie)
+        public IActionResult Edit(MovieModel movieToEdit)
         {
-            _context.Update(movie);
+            _context.Update(movieToEdit);
             _context.SaveChanges();
 
-            return View("Confirmation", movie);
+            return View("Confirmation", movieToEdit);
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var movie = _context.Movies
+            var movieToDelete = _context.Movies
                 .Single(x => x.movieId == id);
 
-            return View(movie);
+            return View(movieToDelete);
         }
 
         [HttpPost]
-        public IActionResult Delete(MovieModel movie)
+        public IActionResult Delete(MovieModel movieToDelete)
         {
-            _context.Movies.Remove(movie);
+            _context.Movies.Remove(movieToDelete);
             _context.SaveChanges();
 
             return RedirectToAction("MovieList");
