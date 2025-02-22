@@ -1,9 +1,10 @@
 ﻿@model Mission06_Biggs.Models.MovieModel
 @{
-	ViewData["Title"] = "Add Movie";
+	ViewData["Title"] = "Add/Edit Movie";
 }
 
 <form method="post">
+    <input type="hidden" asp-for="movieId" />
     <label asp-for="Title" required>Title:</label>
     <input asp-for="Title" required>
     <br />
