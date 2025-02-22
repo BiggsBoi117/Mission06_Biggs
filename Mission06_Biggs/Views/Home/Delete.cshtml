@@ -4,7 +4,8 @@
 @{
 }
 
-@model MovieModel
+@model Movie
+
 <h1>Are you sure you want to delete this movie?</h1>
 <ul>
 	<li>
@@ -34,7 +35,7 @@
 </ul>
 
 <form asp-controller="Home" asp-action="Delete" method="post">
-	<input type="hidden" asp-for="movieId" />
+	<input type="hidden" asp-for="MovieId" />
 
 	<button class="btn btn-danger" type="submit">Delete</button>
 	<a class="btn btn-info" asp-controller="Home" asp-action="MovieList">Cancel</a>

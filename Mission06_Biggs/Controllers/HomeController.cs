@@ -26,14 +26,31 @@ namespace Mission06_Biggs.Controllers
         [HttpGet]
         public IActionResult AddMovie()
         {
-            return View();
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
+            return View(new Movie());
+            
         }
 
         [HttpPost]
-        public IActionResult AddMovie(MovieModel movie)
+        public IActionResult AddMovie(Movie movie)
         {
-            _context.Movies.Add(movie);
-            _context.SaveChanges();
+            
+            if (ModelState.IsValid)
+            {
+                _context.Movies.Add(movie);
+                _context.SaveChanges();
+            }
+            else
+            {
+                ViewBag.Categories = _context.Categories
+                    .OrderBy(x => x.CategoryName)
+                    .ToList();
+                return View("AddMovie", movie);
+            }
+
             return View("Confirmation", movie);
         }
 
@@ -43,6 +60,10 @@ namespace Mission06_Biggs.Controllers
                 .OrderBy(x => x.Title)
                 .ToList();
 
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
             return View(Movies);
         }
 
@@ -50,13 +71,17 @@ namespace Mission06_Biggs.Controllers
         public IActionResult Edit(int id)
         {
             var movieToEdit = _context.Movies
-                .Single(x => x.movieId == id);
+                .Single(x => x.MovieId == id);
+
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
 
             return View("AddMovie", movieToEdit);
         }
 
         [HttpPost]
-        public IActionResult Edit(MovieModel movieToEdit)
+        public IActionResult Edit(Movie movieToEdit)
         {
             _context.Update(movieToEdit);
             _context.SaveChanges();
@@ -68,13 +93,13 @@ namespace Mission06_Biggs.Controllers
         public IActionResult Delete(int id)
         {
             var movieToDelete = _context.Movies
-                .Single(x => x.movieId == id);
+                .Single(x => x.MovieId == id);
 
             return View(movieToDelete);
         }
 
         [HttpPost]
-        public IActionResult Delete(MovieModel movieToDelete)
+        public IActionResult Delete(Movie movieToDelete)
         {
             _context.Movies.Remove(movieToDelete);
             _context.SaveChanges();

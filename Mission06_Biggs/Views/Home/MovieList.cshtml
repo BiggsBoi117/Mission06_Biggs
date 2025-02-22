@@ -4,7 +4,7 @@
 @{
 }
 
-@model List<MovieModel>
+@model List<Movie>
 
 <table class="table table-bordered">
 	<thead class="fw-bold">
@@ -23,15 +23,15 @@
 		<tbody>
 			<td>@x.Title</td>
 			<td>@x.Year</td>
-			<td>@x.Category</td>
+			<td>@x.Category.CategoryName</td>
 			<td>@x.Director</td>
 			<td>@x.Rating</td>
 			<td>@x.Edited</td>
 			<td>@x.LentTo</td>
 			<td>@x.Notes</td>
 
-			<td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@x.movieId">Edit</a></td>
-			<td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.movieId">Delete</a></td>
+			<td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@x.MovieId">Edit</a></td>
+			<td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.MovieId">Delete</a></td>
 		</tbody>
 	}
 
